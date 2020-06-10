@@ -19,7 +19,8 @@ cd ../
 
 echo RUNNING THE TESTS
 cd client/
-yarn test
+ls
+yarn run test_CI
 cd ../
 
 echo DEPLOYSH FINISHED
