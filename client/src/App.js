@@ -16,7 +16,7 @@ function App() {
   return (
     <div>
       <p>{message}</p>
-      <p>1</p>
+      <p>2</p>
     </div>
   );
 }
