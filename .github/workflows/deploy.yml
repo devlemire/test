@@ -9,10 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Run a one-line script
-      run: echo Hello, world!
-      
-    - name: Run a multi-line script
+    - name: Setup SSH Keys and known_hosts
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        mkdir -p ~/.ssh
+        ssh-keyscan github.com >> ~/.ssh/known_hosts
+        ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+        ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
+
+    - name: Some task that fetches dependencies
+      env:
+        SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      run: ./fetch-deps.sh
+        
+       
