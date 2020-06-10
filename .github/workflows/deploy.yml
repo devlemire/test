@@ -18,6 +18,8 @@ jobs:
           command: |
             echo 1 $GITHUB_WORKSPACE
             echo 2 ${{ github.workspace }}
+            cd ${{ github.workspace }}
+            ls
           # Hostname or IP address of the server.
           host: ${{ secrets.HOST_NAME }}
           # Username for authentication.
