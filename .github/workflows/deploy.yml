@@ -6,7 +6,7 @@ on:
     branches: [master]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Setup SSH Keys and known_hosts
@@ -18,7 +18,7 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
 
-      - name: Some task that fetches dependencies
+      - name: Run the deploy script
         env:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
         run: ./deploy.sh
