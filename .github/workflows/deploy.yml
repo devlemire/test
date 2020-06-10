@@ -15,10 +15,10 @@ jobs:
           # Command to execute on the remote server.
           command: ./deploy.sh
           # Hostname or IP address of the server.
-          host: { { secrets.HOST_NAME } }
+          host: "{{ secrets.HOST_NAME }}"
           # Username for authentication.
-          username: { { secrets.USERNAME } }
+          username: "{{ secrets.USERNAME }}"
           # Port number of the server.
           port: 22
           # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
-          privateKey: { { secrets.PRIVATE_KEY } }
+          privateKey: "{{ secrets.PRIVATE_KEY }}"
