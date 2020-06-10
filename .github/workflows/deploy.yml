@@ -10,20 +10,33 @@ jobs:
   install:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run yarn install
+        uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: cd client/ && yarn
+        run: cd client/ && yarn
+      - name: Archive Dependencies
+        uses: actions/upload-artifact@v1
+        with:
+          name: client
+          path: client
   test:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Download client/ Artifcat
+        uses: actions/download-artifcat@v1
+        with:
+          name: client
+      - name: Run test suite
+        uses: actions/setup-node@v1
         with:
           node-version: 12
-      - run: cd client/ && npm run test_CI
+        run: cd client/ && npm run test_CI
   deploy:
     needs: test
     runs-on: ubuntu-latest
