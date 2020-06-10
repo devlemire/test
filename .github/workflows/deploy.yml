@@ -16,8 +16,8 @@ jobs:
         with:
           # Command to execute on the remote server.
           command: |
-            cd ${{ secrets.PROJECT_DIRECTORY }}
-            ./deploy.sh
+            cd ${{ secrets.PROJECT_DIRECTORY }} && ./deploy.sh
+            echo DEPLOY SCRIPT FINISHED
           # Hostname or IP address of the server.
           host: ${{ secrets.HOST_NAME }}
           # Username for authentication.
