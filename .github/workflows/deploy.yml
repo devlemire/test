@@ -11,11 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Run the Front-end Test Suite
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v1
         with:
           node-version: 12
-        run: cd client/ && npm run test_CI
+      - run: npm run test_CI
   deploy:
     runs-on: ubuntu-latest
     steps:
