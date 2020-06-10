@@ -15,7 +15,10 @@ jobs:
         uses: garygrossgarten/github-action-ssh@v0.5.0
         with:
           # Command to execute on the remote server.
-          command: cd ${{ secrets.PROJECT_DIRECTORY }} && git pull && ./deploy.sh
+          command: |
+            cd ${{ secrets.PROJECT_DIRECTORY }}
+            git pull
+            cd scripts && ./deploy.sh
           # Hostname or IP address of the server.
           host: ${{ secrets.HOST_NAME }}
           # Username for authentication.
