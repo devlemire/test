@@ -1,3 +1,4 @@
+#!/bin/bash
 echo RUNNING THE DEPLOY SCRIPT
 ls
 cd client && yarn && cd ../
