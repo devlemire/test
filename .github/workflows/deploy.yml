@@ -15,7 +15,9 @@ jobs:
         uses: garygrossgarten/github-action-ssh@v0.5.0
         with:
           # Command to execute on the remote server.
-          command: echo $GITHUB_WORKSPACE
+          command: |
+            echo 1 $GITHUB_WORKSPACE
+            echo 2 ${{ github.workspace }}
           # Hostname or IP address of the server.
           host: ${{ secrets.HOST_NAME }}
           # Username for authentication.
