@@ -10,12 +10,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Run SSH command
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Connect with SSH
         uses: garygrossgarten/github-action-ssh@v0.5.0
         with:
           # Command to execute on the remote server.
-          command: $GITHUB_WORKSPACE/deploy.sh
+          command: echo CONNECTED
           # Hostname or IP address of the server.
           host: ${{ secrets.HOST_NAME }}
           # Username for authentication.
