@@ -7,6 +7,15 @@ on:
     branches: [master]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        - with:
+            node-version: 12
+      - name: Run the Front-end Test Suite
+      - run: cd client/ && npm run test_CI
   deploy:
     runs-on: ubuntu-latest
     steps:
