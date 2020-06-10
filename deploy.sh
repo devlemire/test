@@ -5,11 +5,21 @@ ls
 echo INSTALLING CLIENT DEPENDENCIES
 cd client/
 yarn
+cd ../
 
 echo INSTALLING SERVER DEPENDENCIES
-cd ../server/
+cd server/
 yarn
-
-echo FINAL ls
 cd ../
-ls
+
+echo BUILDING THE CLIENT
+cd client/
+yarn build
+cd ../
+
+echo RUNNING THE TESTS
+cd client/
+yarn test
+cd ../
+
+echo DEPLOYSH FINISHED
