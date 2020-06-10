@@ -1,4 +1,5 @@
 name: Deploy the code
+
 on:
   push:
     branches: [master]
@@ -10,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run SSH command
-        uses: garygrossgarten/github-action-ssh@v0.5.0
         uses: actions/checkout@v2
+        uses: garygrossgarten/github-action-ssh@v0.5.0
         with:
           # Command to execute on the remote server.
           command: $GITHUB_WORKSPACE/deploy.sh
