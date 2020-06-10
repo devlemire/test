@@ -9,16 +9,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH Keys and known_hosts
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-add - <<< "${{ secrets.SSH_PRIVATE_KEY }}"
-
-      - name: Run the deploy script
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-        run: ./deploy.sh
+      - name: Run SSH command
+        uses: garygrossgarten/github-action-ssh@v0.5.0
+        with:
+          # Command to execute on the remote server.
+          command: ./deploy.sh
+          # Hostname or IP address of the server.
+          host: { { secrets.HOST_NAME } }
+          # Username for authentication.
+          username: { { secrets.USERNAME } }
+          # Port number of the server.
+          port: 22
+          # File Location or string that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+          privateKey: { { secrets.PRIVATE_KEY } }
